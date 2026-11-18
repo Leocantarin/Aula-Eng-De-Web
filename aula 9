@@ -1,1 +1,145 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/global.css">
+  <script src="./scripts/index.js" defer></script>
+  <title>Meus Jogos</title>
+</head>
+<body>
+  <header>
+    <h1>Meus Jogos</h1>
+  </header>
+  <main>
+    <section class="container-cards">
+
+      <div class="card" id="free-fire">
+        <h2>Free Fire</h2>
+        <p>Battle royale</p>
+        <button onclick="marcar('free-fire', 'Free fire')">Click</button>
+      </div>
+
+      <div class="card" id="lol">
+        <h2>League of Legends</h2>
+        <p>MOBA</p>
+        <button onclick="marcar('lol', 'League of Legends')">Click</button>
+      </div>
+
+      <div class="card" id="valorant">
+        <h2>Valorant</h2>
+        <p>Tiro tático</p>
+        <button onclick="marcar('valorant', 'Valorant')">Click</button>
+      </div>
+
+      <div class="card" id="minecraft">
+        <h2>Minecraft</h2>
+        <p>Construção e sobrevivência</p>
+        <button onclick="marcar('minecraft', 'Minecraft')">Click</button>
+      </div>
+
+      <div class="card" id="fortnite">
+        <h2>Fortnite</h2>
+        <p>Battle royale</p>
+        <button onclick="marcar('fortnite', 'Fortnite')">Click</button>
+      </div>
+
+      <div class="card" id="fifa">
+        <h2>Fifa</h2>
+        <p>Futebol</p>
+        <button onclick="marcar('fifa', 'Fifa')">Click</button>
+      </div>
+
+    </section>
+  </main>
+  <footer>
+    <p>Projeto para conhecermos media queries e localStorage</p>
+  </footer>
+</body>
+</html>
+document.querySelectorAll(".card").forEach((card) => {
+  if (localStorage.getItem(card.id)) {
+    card.classList.add("marcado");
+  }
+});
+
+function marcar(id, nome) {
+  const card = document.querySelector(`#${id}`);
+  card.classList.toggle("marcado");
+
+  if (card.classList.contains("marcado")) {
+    localStorage.setItem(id, nome);
+  } else {
+    localStorage.removeItem(id);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 1.6rem;
+  margin: 4rem auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  margin-top: 3rem;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+button {
+  padding: 1rem 2rem;
+  margin-top: 1.6rem;
+}
+
+.container-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+}
+
+@media (min-width: 768px) {
+  .container-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.card {
+  padding: 1.6rem;
+  border: 0.2rem solid #cccccc;
+  border-radius: 0.8rem;
+  text-align: center;
+}
+
+.card p {
+  margin-top: 0.4rem;
+  color: #5a5a5a;
+}
+
+.marcado {
+  border-color: #0d35de;
+  background-color: #e9ecf5;
+}
